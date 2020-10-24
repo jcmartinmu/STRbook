@@ -1,0 +1,96 @@
+---
+title: "Why?"
+author: "Juan Martínez"
+date: "10/23/2020"
+output: pdf_document
+github_document: true
+number_sections: true
+toc_depth: 2.0
+highlight: tango
+md_extensions: -autolink_bare_uris+hard_line_breaks
+includes:
+linkcolor: cyan
+bibliography: Preliminary_Grain_Size.bib
+citecolor: blue
+urlcolor: red
+links-as-notes: true
+biblio-title: References
+link-citations: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, error=FALSE)
+library(tinytex)
+library(bookdown)
+library(knitr)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(purrr)
+library(knitcitations)
+library(knitLatex)
+library(stringr)
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(ggmap)
+library(anytime)
+library(lubridate)
+library(tibble)
+library(kableExtra)
+library(data.table)
+library(rgdal)
+library(raster)
+library(sp)
+library(sf)
+library(gstat)
+library(maps)
+library(tseries)
+```
+
+# What is multilevel regression modeling?
+
+Consider an educational study with data from students in many schools, predicting in each school the student's grades *y* on a standardized test given their scores on a pre-test *x* and other information.
+
+\begin{center}
+\begin{minipage}{.5\linewidth}
+\begin{itemize}
+\item \textcolor{red}{$y$: student's grades for each school.}
+\item \textcolor{blue}{$x$: Student's score and other information.}
+\end{itemize}
+\end{minipage}
+\end{center}
+
+A separate regression model can be fit within each school, and the parameters from these schools can themselves be modeled as depending on school characteristics such as *socioeconomic* status of the school's neighborhood, whether the school is private or public, and so on.
+
+> "The **student-level** regression and the **school-level** regression are **two levels** of a **multilevel model.**
+
+More generally, we consider a multilevel model to be a regression in which the parameters (regression coefficients) are given a probability model. This second-level model has parameters of its own called **hyperparameters** of the model -which are also estimated from data.
+
+> "The two key parts if a multilevel model are **varying coefficients**, and a **model** for those varying coefficients."
+>
+> "The feature that distinguishes multilevel models from classical regression is in the modeling of the **varying coefficients**."
+
+## Models for regression coefficients
+
+To keep notation simple, we assume just **one student-level** predictor $x$ (for example, a pre-test score), and **one school level** predictor $u$ (for example, average partent's incomes).
+
+### Varying-intercept model
+
+This is a model in which the regressions have the **same slope** in each of the schools, and only the intercepts vary. We use the notation $i$ for individual students and $j[i]$ for the school $j$ containing student $i$:
+
+\begin{equation}
+\begin{split}
+y_{i} & = \alpha_{j[i]} + \beta_{j[i]}x_{i} + \epsilon_{i}, \: \: for \: students\: i= \: 1, \: \dots, \: n \\
+\alpha_{j} & = a_{0} + b_{0}u_{j} + \nabla_{j1}, \: \: for \: students\: j= \: 1, \: \dots, \: J \\
+\beta_{j} & = a_{1} + b_{1}u_{j} + \nabla_{j2}, \: \: for \: students\: j= \: 1, \: \dots, \: J
+\end{split}
+\end{equation}
+
+# References {-}
+
+<div id="refs"></div>
+
+# Appendix
+
+
